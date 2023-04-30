@@ -10,7 +10,8 @@ class GenerateHtml {
   }
 }
 
-/* IT JUST WORKS. */
+/* IT JUST WORKS.
+   To skip, jump to line 933. */
 const myMarkup = new GenerateHtml(`
 <div class="wrapper">
   <h1 class="heading">Virtual Keyboard</h1>
@@ -931,3 +932,59 @@ const myMarkup = new GenerateHtml(`
 `);
 
 myMarkup.appendHtml(document.body);
+
+/* Switch language feature.
+   Hotkeys: Left Ctrl + Left Alt */
+let ctrlActive = false;
+let altActive = false;
+
+const lang = localStorage.getItem('keyboardLanguage');
+if (lang) {
+  const rusKeys = document.querySelectorAll('.rus');
+  const engKeys = document.querySelectorAll('.eng');
+  if (lang === 'rus') {
+    rusKeys.forEach((element) => {
+      element.classList.remove('none');
+    });
+    engKeys.forEach((element) => {
+      element.classList.add('none');
+    });
+  } else {
+    rusKeys.forEach((element) => {
+      element.classList.add('none');
+    });
+    engKeys.forEach((element) => {
+      element.classList.remove('none');
+    });
+  }
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'AltLeft') {
+    altActive = true;
+  }
+  if (event.code === 'ControlLeft') {
+    ctrlActive = true;
+  }
+  if (ctrlActive && altActive) {
+    const rusKeys = document.querySelectorAll('.rus');
+    const engKeys = document.querySelectorAll('.eng');
+    rusKeys.forEach((element) => {
+      element.classList.toggle('none');
+    });
+    engKeys.forEach((element) => {
+      element.classList.toggle('none');
+    });
+    const currentLanguage = rusKeys[0].classList.contains('none') ? 'eng' : 'rus';
+    localStorage.setItem('keyboardLanguage', currentLanguage);
+  }
+});
+
+document.addEventListener('keyup', (event) => {
+  if (event.code === 'AltLeft') {
+    altActive = false;
+  }
+  if (event.code === 'ControlLeft') {
+    ctrlActive = false;
+  }
+});
