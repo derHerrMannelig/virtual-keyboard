@@ -1,11 +1,17 @@
-function generateHtml(html) {
-  const template = document.createElement('template');
-  template.innerHTML = html.trim();
-  return template.content.firstElementChild;
+class GenerateHtml {
+  constructor(html) {
+    const template = document.createElement('template');
+    template.innerHTML = html.trim();
+    this.element = template.content.firstElementChild;
+  }
+
+  appendHtml(element) {
+    element.appendChild(this.element);
+  }
 }
 
 /* IT JUST WORKS. */
-const myMarkup = generateHtml(`
+const myMarkup = new GenerateHtml(`
 <div class="wrapper">
   <h1 class="heading">Virtual Keyboard</h1>
   <textarea class="textarea"></textarea>
@@ -924,4 +930,4 @@ const myMarkup = generateHtml(`
 </div>
 `);
 
-document.body.appendChild(myMarkup);
+myMarkup.appendHtml(document.body);
