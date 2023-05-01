@@ -1,0 +1,120 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: #c8e8c8;
+}
+
+.wrapper {
+  width: 1200px;
+  margin: 0.7rem auto;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border: 0.15rem solid #444444;
+  border-top: none;
+  border-left: none;
+}
+
+.heading {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin: 0;
+  font: bold 2rem Arial, sans-serif;
+  text-align: center;
+  color: #444444;
+}
+
+.textarea {
+  display: block;
+  width: 900px;
+  height: 200px;
+  margin: 0 auto 1rem;
+  padding: 0.7rem;
+  font-size: 18px;
+  color: #444444;
+  resize: none;
+}
+
+.none {
+  display: none;
+}
+
+.keyboard {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.8rem 0;
+}
+
+.key {
+  width: 45px;
+  height: 45px;
+  border-radius: 0.5rem;
+  border: 0.15rem solid #444444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.5s;
+}
+
+.key.sp,
+.key.dark {
+  background-color: #CCCCCC;
+}
+
+.key.backspace,
+.key.enter {
+  width: 120px;
+}
+
+.key.tab,
+.key.del {
+  width: 55px;
+}
+
+.key.capslock {
+  width: 75px;
+}
+
+.key.shift-l,
+.key.shift-r {
+  width: 103px;
+}
+
+.key.space {
+  width: 420px;
+}
+
+.key > * {
+  font: bold 1.2rem Arial, sans-serif;
+  color: #444444;
+}
+
+.key.sp > * {
+  font-size: 0.95rem;
+}
+
+.desc {
+  padding: 0.7rem 0;
+  font: bold 1rem Arial, sans-serif;
+  text-align: center;
+  color: #444444;
+}
+
+.key:hover {
+  background-color: #c8e8c8;
+}
+
+.key:active,
+.key.highlight {
+  border-radius: 45px;
+  background-color: #dbb399;
+}
