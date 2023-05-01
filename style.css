@@ -64,7 +64,8 @@ body {
   user-select: none;
 }
 
-.key.sp {
+.key.sp,
+.key.dark {
   background-color: #CCCCCC;
 }
 

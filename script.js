@@ -766,7 +766,7 @@ const myMarkup = new GenerateHtml(`
           <span class="caps-shift none">,</span>
         </span>
       </div>
-      <div class="key arrow-up sp">
+      <div class="key arrow-up dark">
         <span class="eng">
           <span class="lower">▲</span>
           <span class="upper none">▲</span>
@@ -840,16 +840,16 @@ const myMarkup = new GenerateHtml(`
       </div>
       <div class="key space">
         <span class="eng">
-          <span class="lower">Space</span>
-          <span class="upper none">Space</span>
-          <span class="caps none">Space</span>
-          <span class="caps-shift none">Space</span>
+          <span class="lower"> </span>
+          <span class="upper none"> </span>
+          <span class="caps none"> </span>
+          <span class="caps-shift none"> </span>
         </span>
         <span class="rus none">
-          <span class="lower">Space</span>
-          <span class="upper none">Space</span>
-          <span class="caps none">Space</span>
-          <span class="caps-shift none">Space</span>
+          <span class="lower"> </span>
+          <span class="upper none"> </span>
+          <span class="caps none"> </span>
+          <span class="caps-shift none"> </span>
         </span>
       </div>
       <div class="key alt-r sp">
@@ -866,7 +866,7 @@ const myMarkup = new GenerateHtml(`
           <span class="caps-shift none">Alt</span>
         </span>
       </div>
-      <div class="key arrow-left sp">
+      <div class="key arrow-left dark">
         <span class="eng">
           <span class="lower">◄</span>
           <span class="upper none">◄</span>
@@ -880,7 +880,7 @@ const myMarkup = new GenerateHtml(`
           <span class="caps-shift none">◄</span>
         </span>
       </div>
-      <div class="key arrow-down sp">
+      <div class="key arrow-down dark">
         <span class="eng">
           <span class="lower">▼</span>
           <span class="upper none">▼</span>
@@ -894,7 +894,7 @@ const myMarkup = new GenerateHtml(`
           <span class="caps-shift none">▼</span>
         </span>
       </div>
-      <div class="key arrow-right sp">
+      <div class="key arrow-right dark">
         <span class="eng">
           <span class="lower">►</span>
           <span class="upper none">►</span>
@@ -987,4 +987,100 @@ document.addEventListener('keyup', (event) => {
   if (event.code === 'ControlLeft') {
     ctrlActive = false;
   }
+});
+
+/* Self-explanatory: case switcher. */
+function casingSwitcher(shiftSelector) {
+  let capsActive = false;
+  let shiftActive = false;
+
+  const shift = document.querySelector(shiftSelector);
+  const capslock = document.querySelector('.capslock');
+
+  function updateElements() {
+    const elements = document.querySelectorAll('.lower, .upper, .caps, .caps-shift');
+    elements.forEach((element) => {
+      if (!element.classList.contains('none')) {
+        element.classList.add('none');
+      }
+    });
+
+    if (capsActive && shiftActive) {
+      const capsShiftElements = document.querySelectorAll('.caps-shift');
+      capsShiftElements.forEach((element) => {
+        element.classList.remove('none');
+      });
+    } else if (capsActive) {
+      const capsElements = document.querySelectorAll('.caps');
+      capsElements.forEach((element) => {
+        element.classList.remove('none');
+      });
+    } else if (shiftActive) {
+      const upperElements = document.querySelectorAll('.upper');
+      upperElements.forEach((element) => {
+        element.classList.remove('none');
+      });
+    } else {
+      const lowerElements = document.querySelectorAll('.lower');
+      lowerElements.forEach((element) => {
+        element.classList.remove('none');
+      });
+    }
+  }
+
+  shift.addEventListener('mousedown', () => {
+    shift.classList.add('active');
+    shiftActive = true;
+    updateElements();
+  });
+
+  document.addEventListener('mouseup', () => {
+    shift.classList.remove('active');
+    shiftActive = false;
+    updateElements();
+  });
+
+  capslock.addEventListener('click', () => {
+    capsActive = !capsActive;
+    updateElements();
+  });
+}
+
+casingSwitcher('.shift-l');
+casingSwitcher('.shift-r');
+
+/* Clicks on virtual keyboard. */
+const textarea = document.querySelector('.textarea');
+const keys = document.querySelectorAll('.key:not(.sp)');
+keys.forEach((key) => {
+  key.addEventListener('click', () => {
+    const language = key.querySelector('.eng:not(.none), .rus:not(.none)');
+    const casing = language.querySelector('.lower:not(.none), .upper:not(.none), .caps:not(.none), .caps-shift:not(.none)');
+    textarea.value += casing.textContent;
+  });
+});
+
+const spacebar = document.querySelector('.space');
+spacebar.addEventListener('click', () => {
+  textarea.value += '';
+});
+
+const tab = document.querySelector('.tab');
+tab.addEventListener('click', () => {
+  textarea.value += '    ';
+});
+
+const backspace = document.querySelector('.backspace');
+backspace.addEventListener('click', () => {
+  textarea.value = textarea.value.substring(0, textarea.value.length - 1);
+});
+
+const del = document.querySelector('.del');
+del.addEventListener('click', () => {
+  textarea.value = textarea.value.substring(1);
+});
+
+const enter = document.querySelector('.enter');
+enter.addEventListener('click', () => {
+  textarea.value += '\n';
 });
