@@ -15,7 +15,7 @@ class GenerateHtml {
 const myMarkup = new GenerateHtml(`
 <div class="wrapper">
   <h1 class="heading">Virtual Keyboard</h1>
-  <textarea class="textarea"></textarea>
+  <textarea class="textarea" disabled></textarea>
   <div class="keyboard">
     <div class="row">
       <div class="key backquote">
@@ -1165,3 +1165,9 @@ physicalClick('ArrowLeft', 'arrow-left');
 physicalClick('ArrowDown', 'arrow-down');
 physicalClick('ArrowRight', 'arrow-right');
 physicalClick('ControlRight', 'ctrl-r');
+
+window.addEventListener('keydown', (event) => {
+  if (event.code === 'Tab') {
+    event.preventDefault();
+  }
+});
