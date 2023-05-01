@@ -62,6 +62,7 @@ body {
   align-items: center;
   cursor: pointer;
   user-select: none;
+  transition: 0.5s;
 }
 
 .key.sp,
@@ -95,7 +96,6 @@ body {
 .key > * {
   font: bold 1.2rem Arial, sans-serif;
   color: #444444;
-  margin-bottom: 0.2rem;
 }
 
 .key.sp > * {
@@ -107,4 +107,13 @@ body {
   font: bold 1rem Arial, sans-serif;
   text-align: center;
   color: #444444;
+}
+
+.key:hover {
+  background-color: #c8e8c8;
+}
+
+.key:active {
+  border-radius: 45px;
+  background-color: #dbb399;
 }
