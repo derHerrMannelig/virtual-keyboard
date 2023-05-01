@@ -1084,3 +1084,84 @@ const enter = document.querySelector('.enter');
 enter.addEventListener('click', () => {
   textarea.value += '\n';
 });
+
+/* Clicks on physical keyboard. */
+function physicalClick(keyCode, keyClass) {
+  const element = document.querySelector(`.${keyClass}`);
+  document.addEventListener('keydown', (event) => {
+    if (event.code === keyCode) {
+      element.click();
+      element.classList.add('highlight');
+    }
+  });
+  document.addEventListener('keyup', (event) => {
+    if (event.code === keyCode) {
+      element.classList.remove('highlight');
+    }
+  });
+}
+
+physicalClick('Backquote', 'backquote');
+physicalClick('Digit1', 'one');
+physicalClick('Digit2', 'two');
+physicalClick('Digit3', 'three');
+physicalClick('Digit4', 'four');
+physicalClick('Digit5', 'five');
+physicalClick('Digit6', 'six');
+physicalClick('Digit7', 'seven');
+physicalClick('Digit8', 'eight');
+physicalClick('Digit9', 'nine');
+physicalClick('Digit0', 'zero');
+physicalClick('Minus', 'minus');
+physicalClick('Equal', 'equals');
+physicalClick('Backspace', 'backspace');
+physicalClick('Tab', 'tab');
+physicalClick('KeyQ', 'q');
+physicalClick('KeyW', 'w');
+physicalClick('KeyE', 'e');
+physicalClick('KeyR', 'r');
+physicalClick('KeyT', 't');
+physicalClick('KeyY', 'y');
+physicalClick('KeyU', 'u');
+physicalClick('KeyI', 'i');
+physicalClick('KeyO', 'o');
+physicalClick('KeyP', 'p');
+physicalClick('BracketLeft', 'bracket-l');
+physicalClick('BracketRight', 'bracket-r');
+physicalClick('Backslash', 'backslash');
+physicalClick('Delete', 'del');
+physicalClick('CapsLock', 'capslock');
+physicalClick('KeyA', 'a');
+physicalClick('KeyS', 's');
+physicalClick('KeyD', 'd');
+physicalClick('KeyF', 'f');
+physicalClick('KeyG', 'g');
+physicalClick('KeyH', 'h');
+physicalClick('KeyJ', 'j');
+physicalClick('KeyK', 'k');
+physicalClick('KeyL', 'l');
+physicalClick('Semicolon', 'semicolon');
+physicalClick('Quote', 'quote');
+physicalClick('Enter', 'enter');
+physicalClick('ShiftLeft', 'shift-l');
+physicalClick('KeyZ', 'z');
+physicalClick('KeyX', 'x');
+physicalClick('KeyC', 'c');
+physicalClick('KeyV', 'v');
+physicalClick('KeyB', 'b');
+physicalClick('KeyN', 'n');
+physicalClick('KeyM', 'm');
+physicalClick('Comma', 'comma');
+physicalClick('Period', 'dot');
+physicalClick('Slash', 'slash');
+physicalClick('ArrowUp', 'arrow-up');
+physicalClick('ShiftRight', 'shift-r');
+physicalClick('ControlLeft', 'ctrl-l');
+physicalClick('MetaLeft', 'win');
+physicalClick('AltLeft', 'alt-l');
+physicalClick('Space', 'space');
+physicalClick('AltRight', 'alt-r');
+physicalClick('ArrowLeft', 'arrow-left');
+physicalClick('ArrowDown', 'arrow-down');
+physicalClick('ArrowRight', 'arrow-right');
+physicalClick('ControlRight', 'ctrl-r');

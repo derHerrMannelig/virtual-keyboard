@@ -113,7 +113,8 @@ body {
   background-color: #c8e8c8;
 }
 
-.key:active {
+.key:active,
+.key.highlight {
   border-radius: 45px;
   background-color: #dbb399;
 }
